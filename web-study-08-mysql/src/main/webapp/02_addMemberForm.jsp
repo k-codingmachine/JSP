@@ -41,7 +41,6 @@
             <td><input type="submit" value="전송"></td>
             <td><input type="reset" value="취소"></td>
          </tr>
-         
       </table>
 </body>
 </html>
