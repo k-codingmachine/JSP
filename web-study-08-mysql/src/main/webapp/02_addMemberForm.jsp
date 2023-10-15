@@ -42,5 +42,7 @@
             <td><input type="reset" value="취소"></td>
          </tr>
       </table>
+
 </body>
+
 </html>
