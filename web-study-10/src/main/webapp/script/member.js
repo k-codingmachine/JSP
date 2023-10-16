@@ -1,3 +1,14 @@
+function idOk(){
+	opener.frm.userid.value
+		= document.frm.userid.value;
+	opener.frm.reid.value =
+		document.frm.userid.value
+		self.close();
+}
+
+
+
+
 function loginCheck(){
 	if(document.frm.userid.value.length == 0){
 		alert("아이디를 입력해주세요");
@@ -19,4 +30,4 @@ function idCheck(){
 	}
 	let url = "idCheck.do?userid=" + document.frm.userid.value;
 	window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizeable=no, width=450, height=200");
-}//					  새창 띄움
+}//					   새창 띄움
