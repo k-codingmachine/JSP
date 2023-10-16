@@ -22,7 +22,8 @@
     <div class="form-group">
       <label for="userid">아이디:</label>
       <input type="button" value ="중복체크" class="btn btn-info btn-sm float-right" onclick="idCheck()">
-      <input type="text" class="form-control" id="userid" placeholder="Enter usrid" name="userid">
+      <input type="text" class="form-control" id="userid" placeholder="Enter userid" name="userid">
+      <input type="hidden" name="reid">
     </div>
     <div class="form-group">
       <label for="pwd">암호:</label>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>메인페이지</h1>
-	<h3>안녕하세요 ${loginUser.name}님</h3>
+userid : ${userid }<br>
+result : ${result }
 </body>
 </html>
