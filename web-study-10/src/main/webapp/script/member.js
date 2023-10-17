@@ -5,10 +5,6 @@ function idOk(){
 		document.frm.userid.value
 		self.close();
 }
-
-
-
-
 function loginCheck(){
 	if(document.frm.userid.value.length == 0){
 		alert("아이디를 입력해주세요");

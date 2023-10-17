@@ -23,7 +23,7 @@ public class MemberDAO {
 	public static MemberDAO getInstance() {
 		return instance;
 	}
-	
+	//userid 해당하는 데이터 가져오기
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 		try {
@@ -33,15 +33,14 @@ public class MemberDAO {
 			ds = (DataSource)envContext.lookup("jdbc/myoracle");
 			conn = ds.getConnection();
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conn;
 	}
 
-	//로그인
+	//로그인 check
 	public int userCheck(String userid, String pwd) {
-		int result = -1;
+		int result = -1; // 초기값 어떤 값을 넣어도 상관없다.
 		String sql = "select pwd from member where userid = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -79,16 +78,15 @@ public class MemberDAO {
 		
 		return result;
 	}
-	
+	// 아이디로 회원 정보 가져오는 메소드
 	public MemberVO getMember(String userid) {
 		MemberVO vo =null;
-		String sql = "select * from member where userid = ?";
+		String sql = "select * from member where userid =?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			
 		conn= getConnection();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, userid);
@@ -104,7 +102,8 @@ public class MemberDAO {
 			
 			vo = new MemberVO();
 			vo.setName(name);
-			vo.setPwd(id);
+			vo.setUserid(id);
+			vo.setPwd(pwd);
 			vo.setEmail(email);
 			vo.setPhone(phone);
 			vo.setAdmin(admin);
@@ -160,13 +159,71 @@ public class MemberDAO {
 		
 		return result;
 	}
-	
+	//회원 가입
 	public int insertMember(MemberVO vo) {
-		return 0;
+		int result = -1;
+		String sql = "insert into member values(?,?,?,?,?,?)";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			// 1. DB연결
+			conn = getConnection();
+			// 2. sql 구문을 오라클 전달
+			pstmt = conn.prepareStatement(sql);
+			// 3. 맵핑
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getUserid());
+			pstmt.setString(3, vo.getPwd());
+			pstmt.setString(4, vo.getEmail());
+			pstmt.setString(5, vo.getPhone());
+			pstmt.setInt(6, vo.getAdmin());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
 	
+	// 화원 수정
 	public int updateMember(MemberVO vo) {
-		return 0;
+		int result = -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update member set name=?, pwd=?,email=?, phone=?, admin=? where userid=? ";
+		try {
+			// 1. DB연결
+			conn = getConnection();
+			// 2. sql 구문을 오라클 전달
+			pstmt = conn.prepareStatement(sql);
+			// 3. 맵핑
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getPwd());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getPhone());
+			pstmt.setInt(5, vo.getAdmin());
+			pstmt.setString(6, vo.getUserid());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
-	
 }

@@ -4,6 +4,4 @@
 	String url = "login.do";
 	
 	response.sendRedirect(url);
-
-
 %>

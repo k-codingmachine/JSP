@@ -15,7 +15,7 @@
 <div class="container">
   <h2>회원 전용 페이지</h2>
   <form action="logout.do">
-   안녕하세요 ${loginUser.name}(${loginUser.userid }) 님 <br><br>
+   안녕하세요 ${loginUser.name}(${loginUser.userid})님 <br><br>
 	<button type="submit" class="btn btn-secondary">로그아웃</button>&nbsp;&nbsp;
 	<button type="button" class="btn btn-success" 
 			onclick="location.href='memberUpdate.do?userid=${loginUser.userid}'">
