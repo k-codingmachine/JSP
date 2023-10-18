@@ -1,4 +1,4 @@
-<%@page import="com.saeyan.dao.MemberDAO"%>
+<%@page import="com.saeyan.dao.ProductDAO"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.naming.Context"%>
@@ -14,7 +14,7 @@
 <body>
 <%
 	
-MemberDAO mDao = MemberDAO.getInstance(); // mDao : 순수하게 DB와 연결
+ProductDAO mDao = ProductDAO.getInstance(); 
 Connection conn = mDao.getConnection();
 
 out.println("conn : " + conn);
