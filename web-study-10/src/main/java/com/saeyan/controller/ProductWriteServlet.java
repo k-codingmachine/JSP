@@ -15,12 +15,12 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.saeyan.dao.ProductDAO;
 import com.saeyan.dto.ProductVO;
 
-
 @WebServlet("/productWrite.do")
-public class ProductWriteServlet extends HttpServlet {
+public class ProductWriteServlet extends HttpServlet{
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dis = request.getRequestDispatcher("product/productWriter.jsp");
+		RequestDispatcher dis  =request.getRequestDispatcher("product/productWriter.jsp");
 		dis.forward(request, response);
 	}
 	
@@ -30,22 +30,25 @@ public class ProductWriteServlet extends HttpServlet {
 		
 		ServletContext context = getServletContext();
 		String path = context.getRealPath("upload");
-		Integer sizeLimit = 20*1024*1024;
-		String encType= "utf-8";
+		int sizeLimit = 20*1024*1024;
+		String encType = "utf-8";
 		
 		MultipartRequest multi = new MultipartRequest(
-				request,
-				path,
-				sizeLimit,
-				encType,
-				new DefaultFileRenamePolicy()
+				request,  //요청
+				path,     //저장경로 
+				sizeLimit,  //업로드 크기
+				encType,  //인코딩 방법
+				new DefaultFileRenamePolicy()  //중복되면 파일명뒤에 숫자1식 증가
 				);
 		
 		String name = multi.getParameter("name");
 		int price = Integer.parseInt(multi.getParameter("price"));
 		String description = multi.getParameter("description");
 		
+		
+		//파일명
 		String pictureurl = multi.getFilesystemName("pictureurl");
+		
 		
 		ProductVO vo = new ProductVO();
 		vo.setName(name);
@@ -53,14 +56,19 @@ public class ProductWriteServlet extends HttpServlet {
 		vo.setDescription(description);
 		vo.setPictureurl(pictureurl);
 		
+		System.out.println("vo ===> " +  vo);
+		System.out.println("path ===> " +  path);
+		
+		
 		ProductDAO pDao = ProductDAO.getInstance();
 		int result = pDao.insertProduct(vo);
+		System.out.println("result : " + result);
 		
-		if(result == 1) {
-			response.sendRedirect("Product.do");
+		if(result == 1 ) {
+			response.sendRedirect("productList.do");
 		}else {
-			response.sendRedirect("/productWrite.do");
+			response.sendRedirect("productWrite.do");
 		}
+		
 	}
-
 }
