@@ -17,6 +17,7 @@
 <body>
 
 <%
+
     request.setCharacterEncoding("utf-8");
     String name = request.getParameter("item");
     Integer price = Integer.parseInt(request.getParameter("price"));
