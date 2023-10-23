@@ -19,6 +19,9 @@ public class BoardViewFormAction implements Action {
 		System.out.println("num : " +request.getParameter("num"));
 		
 		BoardDAO bDao =BoardDAO.getInstance();
+		
+		bDao.updateReadCount(Integer.parseInt(num));
+		
 		BoardVO vo = bDao.selectOneByNum(Integer.parseInt(num));
 		
 		request.setAttribute("board", vo);
