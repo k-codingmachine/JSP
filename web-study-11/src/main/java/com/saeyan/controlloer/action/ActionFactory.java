@@ -2,12 +2,12 @@ package com.saeyan.controlloer.action;
 
 public class ActionFactory {
 	
-	private static ActionFactory instnace = new ActionFactory();
+	private static ActionFactory instance = new ActionFactory();
 	
 	private ActionFactory() {}
 	
 	public static ActionFactory getInstance() {
-		return instnace;
+		return instance;
 	}
 	
 	public Action getAction(String command) {
