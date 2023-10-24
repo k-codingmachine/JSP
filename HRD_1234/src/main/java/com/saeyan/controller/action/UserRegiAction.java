@@ -1,5 +1,6 @@
 package com.saeyan.controller.action;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,6 @@ public class UserRegiAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, Exception {
 		
 		userVO vo = new userVO();
-		
 		vo.setCustno(Integer.parseInt(request.getParameter("custno")));
 		vo.setCustname(request.getParameter("custname"));
 		vo.setPhone(request.getParameter("phone"));
@@ -22,13 +22,14 @@ public class UserRegiAction implements Action {
 		vo.setGrade(request.getParameter("grade"));
 		vo.setCity(request.getParameter("city"));
 		
-		userDAO uDao = userDAO.getInstance();
-		int result = uDao.insertUser(vo);
+		 userDAO dao = userDAO.getInstance();
+	     int result = dao.insertUser(vo);
 		
-		if(result ==1) {
-			response.sendRedirect("RegiServlet?command=user_List");
-		}
-		
+	     if(result==1) {
+				response.sendRedirect("RegiServlet.java?command=user_list");
+			}
+			
+	     
 	}
 
 }

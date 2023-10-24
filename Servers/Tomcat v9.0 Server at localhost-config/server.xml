@@ -126,13 +126,14 @@
 
 
 
-				<Context docBase="HRD_1234" path="/HRD_1234"
-					reloadable="true" source="org.eclipse.jst.jee.server:HRD_1234" >
-					<Resource name="jdbc/myoracle" auth="Container"
-						type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
-						url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
-						username="scott" password="tiger" maxTotal="20" maxIdle="10"
-						maxWaitMillis="-1"/>
+
+				<Context docBase="JspExam01" path="/JspExam01"
+					reloadable="true" source="org.eclipse.jst.jee.server:JspExam01" >
+				<Resource name="jdbc/myoracle" auth="Container"
+	              type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+	              url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+	              username="scott" password="tiger" maxTotal="20" maxIdle="10"
+	              maxWaitMillis="-1"/>
 				</Context>
 			</Host>
 		</Engine>
