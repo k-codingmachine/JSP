@@ -51,4 +51,5 @@
     <fullyQualifiedTypeName name="com.ezen.controller.action.ShopList"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.signied.controller.action.Action"/>
 </qualifiedTypeNameHistroy>
